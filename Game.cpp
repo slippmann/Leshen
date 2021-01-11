@@ -5,24 +5,12 @@ Game::Game()
 	currentState = GameState::Uninitialized;
 }
 
-////////////////////
-/// \brief Get the global Game instance.
-/// If the instance is not already initialized, this call will initialize it.
-/// 
-/// \return Reference to the Game instance.
-/// 
-////////////////////
 Game& Game::GetInstance()
 {
 	static Game instance;
 	return instance;
 }
 
-////////////////////
-/// \brief Start the game.
-/// This will start the main game loop and handle game states.
-/// 
-////////////////////
 void Game::Start()
 {
 	mainWindow.create(sf::VideoMode(INT_MainWindowWidth, INT_MainWindowHeight), STR_MainWindowName);
@@ -37,12 +25,6 @@ void Game::Start()
 	mainWindow.close();
 }
 
-////////////////////
-/// \brief The main game loop.
-/// The loop responsible for updating the game. The functionality
-/// changes depending on Game::currentState.
-/// 
-////////////////////
 void Game::loop()
 {
 	sf::Event currentEvent;

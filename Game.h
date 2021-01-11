@@ -27,6 +27,13 @@ private:
 	GameState currentState;
 
 	Game();
+
+	////////////////////
+	/// \brief The main game loop.
+	/// The loop responsible for updating the game. The functionality
+	/// changes depending on Game::currentState.
+	/// 
+	////////////////////
 	void loop();
 
 public:
@@ -34,6 +41,19 @@ public:
 	Game(Game const&) = delete;
 	void operator=(Game const&) = delete;
 
+	////////////////////
+	/// \brief Get the global Game instance.
+	/// If the instance is not already initialized, this call will initialize it.
+	/// 
+	/// \return Reference to the Game instance.
+	/// 
+	////////////////////
 	static Game& GetInstance();
+
+	////////////////////
+	/// \brief Start the game.
+	/// This will start the main game loop and handle game states.
+	/// 
+	////////////////////
 	void Start();
 };
