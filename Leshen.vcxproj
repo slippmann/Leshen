@@ -152,6 +152,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Leshen.cpp" />
+    <ClCompile Include="ServiceManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="IService.h" />
+    <ClInclude Include="ServiceManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
