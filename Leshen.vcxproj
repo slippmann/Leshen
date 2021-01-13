@@ -155,6 +155,11 @@
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Leshen.cpp" />
+    <ClCompile Include="ServiceManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="IService.h" />
+    <ClInclude Include="ServiceManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
