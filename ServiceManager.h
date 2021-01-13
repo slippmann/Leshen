@@ -10,7 +10,7 @@ class ServiceManager
 {
 private:
 	/// A dictionary containing all registered services
-	std::map<std::string, std::unique_ptr<IService>> services;
+	static std::map<std::string, std::unique_ptr<IService>> services;
 
 public:
 	////////////////////
@@ -21,7 +21,7 @@ public:
 	/// \param service		A unique pointer to the service object
 	/// 
 	////////////////////
-	void RegisterService(std::string serviceName, std::unique_ptr<IService>& service);
+	static void RegisterService(std::string serviceName, std::unique_ptr<IService>& service);
 
 	////////////////////
 	/// \brief Get a pointer to a service.
@@ -33,5 +33,5 @@ public:
 	/// service exists, throws exception.
 	/// 
 	////////////////////
-	IService* GetService(std::string serviceName);
+	static IService* GetService(std::string serviceName);
 };

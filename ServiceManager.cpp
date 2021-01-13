@@ -18,3 +18,5 @@ IService* ServiceManager::GetService(std::string serviceName)
 
 	return itr->second.get();
 }
+
+std::map<std::string, std::unique_ptr<IService>> ServiceManager::services;
