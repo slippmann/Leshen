@@ -122,7 +122,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\steve\source\repos\Leshen\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\SFML-2.5.1\include;$(ProjectDir)\spdlog-1.8.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -140,7 +140,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\steve\source\repos\Leshen\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\SFML-2.5.1\include;$(ProjectDir)\spdlog-1.8.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -156,10 +156,13 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Leshen.cpp" />
     <ClCompile Include="ServiceManager.cpp" />
+    <ClCompile Include="SPDLogService.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ILogService.h" />
     <ClInclude Include="IService.h" />
     <ClInclude Include="ServiceManager.h" />
+    <ClInclude Include="SPDLogService.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
