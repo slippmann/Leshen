@@ -1,5 +1,8 @@
 #include "Game.h"
 
+#include "ServiceManager.h"
+#include "SPDLogService.h"
+
 Game::Game()
 {
 	currentState = GameState::Uninitialized;
@@ -13,6 +16,10 @@ Game& Game::GetInstance()
 
 void Game::Start()
 {
+	ILogService* logger = (ILogService*)ServiceManager::GetService("Logger");
+
+	logger->Info("Starting Game");
+
 	mainWindow.create(sf::VideoMode(INT_MainWindowWidth, INT_MainWindowHeight), STR_MainWindowName);
 
 	currentState = GameState::Playing;
@@ -22,12 +29,16 @@ void Game::Start()
 		loop();
 	}
 
+	logger->Info("Exiting game");
+
 	mainWindow.close();
 }
 
 void Game::loop()
 {
+	ILogService* logger = dynamic_cast<ILogService*>(ServiceManager::GetService("Logger"));
 	sf::Event currentEvent;
+
 	mainWindow.pollEvent(currentEvent);
 
 	if (currentEvent.type == sf::Event::Closed)
@@ -49,7 +60,7 @@ void Game::loop()
 			{
 				if (currentEvent.key.code == sf::Keyboard::Escape)
 				{
-					currentState = GameState::PauseMenu;
+					logger->Debug("User pressed escape...");
 				}
 			}
 			break;
