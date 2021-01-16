@@ -6,6 +6,11 @@
 
 #include "IService.h"
 
+////////////////////
+/// \brief Global service manager. Takes ownership of all
+/// services that are registered to it.
+/// 
+////////////////////
 class ServiceManager
 {
 private:
