@@ -5,6 +5,7 @@
 
 Game::Game()
 {
+	mainWindow = Window::Create(INT_MainWindowWidth, INT_MainWindowHeight, STR_MainWindowName);
 	currentState = GameState::Uninitialized;
 }
 
@@ -20,8 +21,6 @@ void Game::Start()
 
 	logger->Info("Starting Game");
 
-	mainWindow.create(sf::VideoMode(INT_MainWindowWidth, INT_MainWindowHeight), STR_MainWindowName);
-
 	currentState = GameState::Playing;
 
 	while (currentState != GameState::Exiting)
@@ -31,38 +30,35 @@ void Game::Start()
 
 	logger->Info("Exiting game");
 
-	mainWindow.close();
+	mainWindow->Close();
 }
 
 void Game::loop()
 {
 	ILogService* logger = dynamic_cast<ILogService*>(ServiceManager::GetService("Logger"));
-	sf::Event currentEvent;
 
-	mainWindow.pollEvent(currentEvent);
-
-	if (currentEvent.type == sf::Event::Closed)
+	if (mainWindow->IsClosing())
 	{
 		currentState = GameState::Exiting;
 		return;
 	}
 
-	mainWindow.clear(sf::Color(0, 0, 0));
+	mainWindow->Clear();
 
 	switch (currentState)
 	{
 		case GameState::Playing:
 		{
 			// Draw
-			mainWindow.display();
+			mainWindow->Display();
 
-			if (currentEvent.type == sf::Event::KeyPressed)
+			/*if (currentEvent.type == sf::Event::KeyPressed)
 			{
 				if (currentEvent.key.code == sf::Keyboard::Escape)
 				{
 					logger->Debug("User pressed escape...");
 				}
-			}
+			}*/
 			break;
 		}
 
