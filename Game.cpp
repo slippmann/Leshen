@@ -1,7 +1,8 @@
 #include "Game.h"
 
 #include "ServiceManager.h"
-#include "SPDLogService.h"
+#include "ILogService.h"
+#include "IInputService.h"
 
 Game::Game()
 {
@@ -17,7 +18,7 @@ Game& Game::GetInstance()
 
 void Game::Start()
 {
-	ILogService* logger = (ILogService*)ServiceManager::GetService("Logger");
+	ILogService* logger = dynamic_cast<ILogService*>(ServiceManager::GetService("Logger"));
 
 	logger->Info("Starting Game");
 
@@ -36,6 +37,9 @@ void Game::Start()
 void Game::loop()
 {
 	ILogService* logger = dynamic_cast<ILogService*>(ServiceManager::GetService("Logger"));
+	IInputService* input = dynamic_cast<IInputService*>(ServiceManager::GetService("Input"));
+
+	Point2D mousePos;
 
 	if (mainWindow->IsClosing())
 	{
@@ -44,6 +48,8 @@ void Game::loop()
 	}
 
 	mainWindow->Clear();
+	input->UpdateKeys();
+	input->UpdateMouseButtons();
 
 	switch (currentState)
 	{
@@ -52,13 +58,19 @@ void Game::loop()
 			// Draw
 			mainWindow->Display();
 
-			/*if (currentEvent.type == sf::Event::KeyPressed)
+			if (input->IsPressed(IInputService::MouseButton::Left))
 			{
-				if (currentEvent.key.code == sf::Keyboard::Escape)
+				Point2D clickPos = input->GetMousePosition(mainWindow.get());
+				if (mainWindow->GetRectangle().Contains(clickPos))
 				{
-					logger->Debug("User pressed escape...");
+					logger->Debug("User clicked (%f, %f)...", clickPos.X, clickPos.Y);
 				}
-			}*/
+			}
+
+			if (input->IsPressed(IInputService::Key::Escape))
+			{
+				logger->Debug("User pressed escape...");
+			}
 			break;
 		}
 

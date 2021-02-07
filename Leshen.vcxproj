@@ -86,7 +86,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>USE_SFML;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Users\steve\source\repos\Leshen\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -103,7 +103,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>USE_SFML;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Users\steve\source\repos\Leshen\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -120,7 +120,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);SFML_GRAPHICS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>USE_SFML;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)\SFML-2.5.1\include;$(ProjectDir)\spdlog-1.8.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -138,7 +138,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);SFML_GRAPHICS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>USE_SFML;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)\SFML-2.5.1\include;$(ProjectDir)\spdlog-1.8.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -155,15 +155,22 @@
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Leshen.cpp" />
+    <ClCompile Include="Point2D.cpp" />
+    <ClCompile Include="Rectangle2D.cpp" />
     <ClCompile Include="ServiceManager.cpp" />
+    <ClCompile Include="SFMLInputService.cpp" />
     <ClCompile Include="SFMLWindow.cpp" />
     <ClCompile Include="SPDLogService.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ILogService.h" />
+    <ClInclude Include="IInputService.h" />
     <ClInclude Include="IService.h" />
+    <ClInclude Include="Point2D.h" />
+    <ClInclude Include="Rectangle2D.h" />
     <ClInclude Include="ServiceManager.h" />
+    <ClInclude Include="SFMLInputService.h" />
     <ClInclude Include="SFMLWindow.h" />
     <ClInclude Include="SPDLogService.h" />
     <ClInclude Include="Window.h" />
