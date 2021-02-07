@@ -5,6 +5,7 @@
 
 #include "ServiceManager.h"
 #include "SPDLogService.h"
+#include "SFMLInputService.h"
 
 #if _DEBUG
 const ILogService::LogLevel OBJ_LogLevel = ILogService::LogLevel::DEBUG;
@@ -22,9 +23,21 @@ void initializeLogger()
 	ServiceManager::RegisterService("Logger", uniqueLogService);
 }
 
-int main(int argc, char** argv)
+void initializeInputService()
+{
+	auto uniqueInputService = std::unique_ptr<IService>(new SFMLInputService());
+	ServiceManager::RegisterService("Input", uniqueInputService);
+}
+
+void initializeServices()
 {
 	initializeLogger();
+	initializeInputService();
+}
+
+int main(int argc, char** argv)
+{
+	initializeServices();
 
 	Game::GetInstance().Start();
 

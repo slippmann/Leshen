@@ -1,10 +1,12 @@
 #include "Game.h"
 
 #include "ServiceManager.h"
-#include "SPDLogService.h"
+#include "ILogService.h"
+#include "IInputService.h"
 
 Game::Game()
 {
+	mainWindow = Window::Create(INT_MainWindowWidth, INT_MainWindowHeight, STR_MainWindowName);
 	currentState = GameState::Uninitialized;
 }
 
@@ -16,11 +18,9 @@ Game& Game::GetInstance()
 
 void Game::Start()
 {
-	ILogService* logger = (ILogService*)ServiceManager::GetService("Logger");
+	ILogService* logger = dynamic_cast<ILogService*>(ServiceManager::GetService("Logger"));
 
 	logger->Info("Starting Game");
-
-	mainWindow.create(sf::VideoMode(INT_MainWindowWidth, INT_MainWindowHeight), STR_MainWindowName);
 
 	currentState = GameState::Playing;
 
@@ -31,37 +31,45 @@ void Game::Start()
 
 	logger->Info("Exiting game");
 
-	mainWindow.close();
+	mainWindow->Close();
 }
 
 void Game::loop()
 {
 	ILogService* logger = dynamic_cast<ILogService*>(ServiceManager::GetService("Logger"));
-	sf::Event currentEvent;
+	IInputService* input = dynamic_cast<IInputService*>(ServiceManager::GetService("Input"));
 
-	mainWindow.pollEvent(currentEvent);
+	Point2D mousePos;
 
-	if (currentEvent.type == sf::Event::Closed)
+	if (mainWindow->IsClosing())
 	{
 		currentState = GameState::Exiting;
 		return;
 	}
 
-	mainWindow.clear(sf::Color(0, 0, 0));
+	mainWindow->Clear();
+	input->UpdateKeys();
+	input->UpdateMouseButtons();
 
 	switch (currentState)
 	{
 		case GameState::Playing:
 		{
 			// Draw
-			mainWindow.display();
+			mainWindow->Display();
 
-			if (currentEvent.type == sf::Event::KeyPressed)
+			if (input->IsPressed(IInputService::MouseButton::Left))
 			{
-				if (currentEvent.key.code == sf::Keyboard::Escape)
+				Point2D clickPos = input->GetMousePosition(mainWindow.get());
+				if (mainWindow->GetRectangle().Contains(clickPos))
 				{
-					logger->Debug("User pressed escape...");
+					logger->Debug("User clicked (%f, %f)...", clickPos.X, clickPos.Y);
 				}
+			}
+
+			if (input->IsPressed(IInputService::Key::Escape))
+			{
+				logger->Debug("User pressed escape...");
 			}
 			break;
 		}

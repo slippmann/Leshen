@@ -1,6 +1,8 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
+#include <memory>
+
+#include "Window.h"
 
 ////////////////////
 /// \brief The main Game class.
@@ -23,7 +25,7 @@ private:
 		Exiting
 	};
 
-	sf::RenderWindow mainWindow;
+	std::unique_ptr<Window> mainWindow;
 	GameState currentState;
 
 	Game();
