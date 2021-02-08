@@ -1,3 +1,5 @@
+#include <fmt/fmt.h>
+
 #include "Game.h"
 
 #include "ServiceManager.h"
@@ -63,7 +65,7 @@ void Game::loop()
 				Point2D clickPos = input->GetMousePosition(mainWindow.get());
 				if (mainWindow->GetRectangle().Contains(clickPos))
 				{
-					logger->Debug("User clicked (%f, %f)...", clickPos.X, clickPos.Y);
+					logger->Debug(fmt::format("User clicked ({}, {})...", clickPos.X, clickPos.Y));
 				}
 			}
 
