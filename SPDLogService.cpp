@@ -35,68 +35,58 @@ void SPDLogService::SetLevel(LogLevel level)
 		spdlog::set_level(spdlog::level::err);
 }
 
-void SPDLogService::Info(const char* formatString, ...)
+void SPDLogService::Info(const char* message)
 {
-	va_list args;
-	va_start(args, formatString);
-
-	for (auto& logger : loggers)
-	{
-		if (logger.get() != nullptr)
-		{
-			logger->info(formatString, args);
-		}
-	}
-
-	va_end(args);
+	log(LogLevel::INFO, message);
 }
 
-void SPDLogService::Debug(const char* formatString, ...)
+void SPDLogService::Debug(const char* message)
 {
-	va_list args;
-	va_start(args, formatString);
-
-	for (auto& logger : loggers)
-	{
-		if (logger.get() != nullptr)
-		{
-			logger->debug(formatString, args);
-		}
-	}
-
-	//std::vprintf(formatString, args);
-
-	va_end(args);
+	log(LogLevel::DEBUG, message);
 }
 
-void SPDLogService::Warn(const char* formatString, ...)
+void SPDLogService::Warn(const char* message)
 {
-	va_list args;
-	va_start(args, formatString);
-
-	for (auto& logger : loggers)
-	{
-		if (logger.get() != nullptr)
-		{
-			logger->warn(formatString, args);
-		}
-	}
-
-	va_end(args);
+	log(LogLevel::WARN, message);
 }
 
-void SPDLogService::Error(const char* formatString, ...)
+void SPDLogService::Error(const char* message)
 {
-	va_list args;
-	va_start(args, formatString);
+	log(LogLevel::ERR, message);
+}
 
+void SPDLogService::log(LogLevel level, const char* message)
+{
 	for (auto& logger : loggers)
 	{
 		if (logger.get() != nullptr)
 		{
-			logger->error(formatString, args);
+			switch (level)
+			{
+				case LogLevel::INFO:
+				{
+					logger->info(message);
+					break;
+				}
+
+				case LogLevel::DEBUG:
+				{
+					logger->debug(message);
+					break;
+				}
+
+				case LogLevel::WARN:
+				{
+					logger->warn(message);
+					break;
+				}
+
+				case LogLevel::ERR:
+				{
+					logger->error(message);
+					break;
+				}
+			}
 		}
 	}
-
-	va_end(args);
 }
