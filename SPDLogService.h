@@ -10,6 +10,14 @@
 ////////////////////
 class SPDLogService : public ILogService
 {
+private:
+	const int INT_max_size  = 1024 * 1024 * 5; // 5MB
+	const int INT_max_files = 3;
+
+	void log(LogLevel level, const char* message);
+
+	std::vector<std::shared_ptr<spdlog::logger>> loggers;
+
 public:
 	SPDLogService();
 
@@ -26,12 +34,4 @@ public:
 	void Debug(const char* message) override;
 	void Warn(const char* message) override;
 	void Error(const char * message) override;
-
-private:
-	const int INT_max_size  = 1024 * 1024 * 5; // 5MB
-	const int INT_max_files = 3;
-
-	void log(LogLevel level, const char* message);
-
-	std::vector<std::shared_ptr<spdlog::logger>> loggers;
 };
