@@ -41,10 +41,8 @@ void SPDLogService::log(LogLevel level, const char* message)
 	}
 }
 
-SPDLogService::SPDLogService()
+SPDLogService::SPDLogService() : name(__func__)
 {
-	name = __func__;
-
 	spdlog::set_pattern("[%Y-%m-%d %T %z] [%^%=7l%$] [thread %t] %v");
 
 	loggers.push_back(
@@ -57,6 +55,11 @@ SPDLogService::SPDLogService(const char* logFilePath) : SPDLogService()
 	loggers.push_back(
 		spdlog::rotating_logger_mt("file_logger", logFilePath, INT_max_size, INT_max_files)
 	);
+}
+
+const char* SPDLogService::GetName() const
+{
+	return name;
 }
 
 void SPDLogService::SetLevel(LogLevel level)
@@ -89,4 +92,8 @@ void SPDLogService::Warn(const char* message)
 void SPDLogService::Error(const char* message)
 {
 	log(LogLevel::ERR, message);
+}
+
+SPDLogService::~SPDLogService()
+{
 }

@@ -11,6 +11,8 @@
 class SPDLogService : public ILogService
 {
 private:
+	const char* name;
+
 	const int INT_max_size  = 1024 * 1024 * 5; // 5MB
 	const int INT_max_files = 3;
 
@@ -29,9 +31,13 @@ public:
 	////////////////////
 	SPDLogService(const char* logFilePath);
 
-	void SetLevel(LogLevel level) override;
-	void Info(const char* message) override;
-	void Debug(const char* message) override;
-	void Warn(const char* message) override;
-	void Error(const char * message) override;
+	virtual const char* GetName() const override;
+
+	virtual void SetLevel(LogLevel level) override;
+	virtual void Info(const char* message) override;
+	virtual void Debug(const char* message) override;
+	virtual void Warn(const char* message) override;
+	virtual void Error(const char * message) override;
+
+	virtual ~SPDLogService() override;
 };

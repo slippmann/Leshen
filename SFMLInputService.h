@@ -13,6 +13,8 @@
 class SFMLInputService : public IInputService
 {
 private:
+	const char* name;
+
 	const int UINT_NumKeys = static_cast<int>(Key::Unknown);
 	const int UINT_NumMouseButtons = static_cast<int>(MouseButton::Unknown);
 
@@ -42,6 +44,10 @@ private:
 	sf::Mouse::Button buttonToSfmlButton(MouseButton buttonCode);
 
 public:
+	SFMLInputService();
+
+	virtual const char* GetName() const override;
+
 	virtual std::bitset<10> GetKeys() override;
 	virtual std::bitset<2> GetMouseButtons() override;
 	virtual Point2D GetMousePosition(Window* window) override;
@@ -55,4 +61,6 @@ public:
 	virtual bool IsDown(MouseButton button) override;
 	virtual bool IsPressed(MouseButton button) override;
 	virtual bool IsReleased(MouseButton button) override;
+
+	virtual ~SFMLInputService() override;
 };
