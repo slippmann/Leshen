@@ -10,6 +10,9 @@
 ////////////////////
 class SFMLWindow : public Window
 {
+private:
+	sf::RenderWindow window;
+
 public:
 	////////////////////
 	/// \brief Construct a new SFML Window.
@@ -30,7 +33,4 @@ public:
 	virtual void Draw() override;
 	virtual void Display() override;
 	virtual bool IsClosing() override;
-
-private:
-	sf::RenderWindow window;
 };

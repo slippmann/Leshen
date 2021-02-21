@@ -5,6 +5,42 @@
 #include "spdlog/sinks/stdout_color_sinks.h"
 #include "spdlog/sinks/rotating_file_sink.h"
 
+void SPDLogService::log(LogLevel level, const char* message)
+{
+	for (auto& logger : loggers)
+	{
+		if (logger.get() != nullptr)
+		{
+			switch (level)
+			{
+			case LogLevel::INFO:
+			{
+				logger->info(message);
+				break;
+			}
+
+			case LogLevel::DEBUG:
+			{
+				logger->debug(message);
+				break;
+			}
+
+			case LogLevel::WARN:
+			{
+				logger->warn(message);
+				break;
+			}
+
+			case LogLevel::ERR:
+			{
+				logger->error(message);
+				break;
+			}
+			}
+		}
+	}
+}
+
 SPDLogService::SPDLogService()
 {
 	name = __func__;
@@ -53,40 +89,4 @@ void SPDLogService::Warn(const char* message)
 void SPDLogService::Error(const char* message)
 {
 	log(LogLevel::ERR, message);
-}
-
-void SPDLogService::log(LogLevel level, const char* message)
-{
-	for (auto& logger : loggers)
-	{
-		if (logger.get() != nullptr)
-		{
-			switch (level)
-			{
-				case LogLevel::INFO:
-				{
-					logger->info(message);
-					break;
-				}
-
-				case LogLevel::DEBUG:
-				{
-					logger->debug(message);
-					break;
-				}
-
-				case LogLevel::WARN:
-				{
-					logger->warn(message);
-					break;
-				}
-
-				case LogLevel::ERR:
-				{
-					logger->error(message);
-					break;
-				}
-			}
-		}
-	}
 }
