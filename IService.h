@@ -8,10 +8,7 @@
 ////////////////////
 class IService
 {
-protected:
-	/// Name of the service
-	const char* name;
-
 public:
-	virtual ~IService() {}
+	virtual const char* GetName() const = 0;
+	virtual ~IService() = 0 {}
 };

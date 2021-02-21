@@ -143,4 +143,6 @@ public:
 	/// 
 	////////////////////
 	virtual bool IsReleased(MouseButton button) = 0;
+
+	virtual ~IInputService() = 0 {}
 };

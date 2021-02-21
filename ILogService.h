@@ -68,4 +68,6 @@ public:
 	virtual void Error(const char* message) = 0;
 	virtual void Error(std::string& message)  { Error(message.c_str()); };
 	virtual void Error(std::string&& message) { Error(message.c_str()); };
+
+	virtual ~ILogService() = 0 {}
 };

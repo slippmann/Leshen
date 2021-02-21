@@ -34,6 +34,15 @@ sf::Mouse::Button SFMLInputService::buttonToSfmlButton(MouseButton buttonCode)
 	}
 }
 
+SFMLInputService::SFMLInputService() : name(__func__)
+{
+}
+
+const char* SFMLInputService::GetName() const
+{
+	return name;
+}
+
 void SFMLInputService::UpdateKeys()
 {
 	Key currentKey;
@@ -115,4 +124,8 @@ bool SFMLInputService::IsReleased(MouseButton button)
 {
 	int buttonIndex = static_cast<size_t>(button);
 	return (prevMouseButtons[buttonIndex] == 0 && mouseButtons[buttonIndex] == 1);
+}
+
+SFMLInputService::~SFMLInputService()
+{
 }
