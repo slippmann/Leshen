@@ -94,7 +94,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(ProjectDir)\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-system.lib;sfml-main.lib;sfml-graphics.lib;sfml-audio.lib;sfml-network.lib;sfml-window.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-system-d.lib;sfml-main-d.lib;sfml-graphics-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-window-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -129,7 +129,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(ProjectDir)\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-system.lib;sfml-main.lib;sfml-graphics.lib;sfml-audio.lib;sfml-network.lib;sfml-window.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-system-d.lib;sfml-main-d.lib;sfml-graphics-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-window-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -154,22 +154,26 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Leshen.cpp" />
     <ClCompile Include="Point2D.cpp" />
     <ClCompile Include="Rectangle2D.cpp" />
     <ClCompile Include="ServiceManager.cpp" />
+    <ClCompile Include="SFMLGameObject.cpp" />
     <ClCompile Include="SFMLInputService.cpp" />
     <ClCompile Include="SFMLWindow.cpp" />
     <ClCompile Include="SPDLogService.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="ILogService.h" />
     <ClInclude Include="IInputService.h" />
     <ClInclude Include="IService.h" />
     <ClInclude Include="Point2D.h" />
     <ClInclude Include="Rectangle2D.h" />
     <ClInclude Include="ServiceManager.h" />
+    <ClInclude Include="SFMLGameObject.h" />
     <ClInclude Include="SFMLInputService.h" />
     <ClInclude Include="SFMLWindow.h" />
     <ClInclude Include="SPDLogService.h" />
@@ -177,6 +181,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\textures\player.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

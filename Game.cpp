@@ -1,10 +1,15 @@
 #include <fmt/fmt.h>
 
 #include "Game.h"
+// TODO: temporary test code. Remove asap
+#include "SFMLGameObject.h"
 
 #include "ServiceManager.h"
 #include "ILogService.h"
 #include "IInputService.h"
+
+// TODO: temporary test code. Remove asap
+static SFMLGameObject player;
 
 Game::Game()
 {
@@ -21,6 +26,9 @@ Game& Game::GetInstance()
 void Game::Start()
 {
 	ILogService* logger = dynamic_cast<ILogService*>(ServiceManager::GetService("Logger"));
+
+	// TODO: temporary test code. Remove asap
+	player.Load("resources/textures/player.png");
 
 	logger->Info("Starting Game");
 
@@ -57,22 +65,50 @@ void Game::loop()
 	{
 		case GameState::Playing:
 		{
-			// Draw
-			mainWindow->Display();
+			Point2D mousePos = input->GetMousePosition(mainWindow.get());
+			// TODO: temporary test code. Remove asap
+			Point2D newPosition = player.GetPosition();
 
 			if (input->IsPressed(IInputService::MouseButton::Left))
 			{
-				Point2D clickPos = input->GetMousePosition(mainWindow.get());
-				if (mainWindow->GetRectangle().Contains(clickPos))
+				if (mainWindow->GetRectangle().Contains(mousePos))
 				{
-					logger->Debug(fmt::format("User clicked ({}, {})...", clickPos.X, clickPos.Y));
+					logger->Debug(fmt::format("User clicked ({}, {})...", mousePos.X, mousePos.Y));
 				}
+			}
+
+			// TODO: temporary test code. Remove asap
+			if (input->IsDown(IInputService::Key::W))
+			{
+				newPosition.Y -= 2;
+			}
+			if (input->IsDown(IInputService::Key::S))
+			{
+				newPosition.Y += 2;
+			}
+			if (input->IsDown(IInputService::Key::D))
+			{
+				newPosition.X += 2;
+			}
+			if (input->IsDown(IInputService::Key::A))
+			{
+				newPosition.X -= 2;
+			}
+
+			if (mainWindow->GetRectangle().Contains(newPosition))
+			{
+				player.SetPosition(newPosition);
 			}
 
 			if (input->IsPressed(IInputService::Key::Escape))
 			{
 				logger->Debug("User pressed escape...");
 			}
+
+			// Draw
+			mainWindow->Draw(player);
+			mainWindow->Display();
+
 			break;
 		}
 
