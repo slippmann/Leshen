@@ -30,7 +30,7 @@ public:
 
 	virtual void Close() override;
 	virtual void Clear() override;
-	virtual void Draw() override;
+	virtual void Draw(GameObject& gameObject) override;
 	virtual void Display() override;
 	virtual bool IsClosing() override;
 };
