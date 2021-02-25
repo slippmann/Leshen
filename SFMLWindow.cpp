@@ -1,6 +1,7 @@
 #include <stdexcept>
 
 #include "SFMLWindow.h"
+#include "SFMLGameObject.h"
 
 SFMLWindow::SFMLWindow(unsigned int pxWidth, unsigned int pxHeight, const char* name)
 {
@@ -29,9 +30,10 @@ void SFMLWindow::Clear()
 	window.clear();
 }
 
-void SFMLWindow::Draw()
+void SFMLWindow::Draw(GameObject& gameObject)
 {
-	throw std::logic_error("Not implemented");
+	SFMLGameObject* sfmlGameObject = static_cast<SFMLGameObject*>(&gameObject);
+	window.draw(sfmlGameObject->GetSprite());
 }
 
 void SFMLWindow::Display()

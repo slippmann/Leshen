@@ -3,6 +3,7 @@
 #include <memory>
 
 #include "Rectangle2D.h"
+#include "GameObject.h"
 
 ////////////////////
 /// \brief Generic window object.
@@ -50,11 +51,10 @@ public:
 	/// \brief Draw object onto the window.
 	/// Need to call Display() to update window on-screen.
 	///
-	/// \returns std::bitset containing key states.
-	/// Index the bitset using the Key enum.
+	/// \param gameObject	Object to draw on the window.
 	/// 
 	////////////////////
-	virtual void Draw() = 0;
+	virtual void Draw(GameObject& gameObject) = 0;
 
 	////////////////////
 	/// \brief Display the window on screen.
