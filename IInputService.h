@@ -61,7 +61,7 @@ public:
 	/// \returns Point2D with the x and y position of the cursor.
 	/// 
 	////////////////////
-	virtual Point2D GetMousePosition(Window* window) = 0;
+	virtual Point2D GetMousePosition() = 0;
 
 	////////////////////
 	/// \brief Update the current set of pressed keys.
@@ -105,12 +105,14 @@ public:
 
 
 	////////////////////
-	/// \brief Update the current set of pressed mouse buttons.
+	/// \brief Update the current mouse position set of pressed mouse buttons.
 	/// The mouse button states will be queried and stored
 	/// for later access via GetMouseButtons().
 	/// 
+	/// \param window	The window which the mouse position is relative to.
+	/// 
 	////////////////////
-	virtual void UpdateMouseButtons() = 0;
+	virtual void UpdateMouse(Window& window) = 0;
 
 	////////////////////
 	/// \brief Check if a given mouse button is currently down.

@@ -59,9 +59,14 @@ void SFMLInputService::UpdateKeys()
 	}
 }
 
-void SFMLInputService::UpdateMouseButtons()
+void SFMLInputService::UpdateMouse(Window& window)
 {
 	MouseButton currentButton;
+
+	sf::RenderWindow* relativeWindow = dynamic_cast<SFMLWindow*>(&window)->GetRenderWindow();
+	sf::Vector2 position = sf::Mouse::getPosition(*relativeWindow);
+
+	mousePosition = Point2D(position.x, position.y);
 
 	// Save current mouse button bits
 	prevMouseButtons = mouseButtons;
@@ -85,11 +90,9 @@ std::bitset<2> SFMLInputService::GetMouseButtons()
 	return mouseButtons;
 }
 
-Point2D SFMLInputService::GetMousePosition(Window* window)
+Point2D SFMLInputService::GetMousePosition()
 {
-	sf::RenderWindow* relativeWindow = dynamic_cast<SFMLWindow*>(window)->GetRenderWindow();
-	sf::Vector2 position = sf::Mouse::getPosition(*relativeWindow);
-	return Point2D(position.x, position.y);
+	return mousePosition;
 }
 
 bool SFMLInputService::IsDown(Key key)
@@ -123,7 +126,7 @@ bool SFMLInputService::IsPressed(MouseButton button)
 bool SFMLInputService::IsReleased(MouseButton button)
 {
 	int buttonIndex = static_cast<size_t>(button);
-	return (prevMouseButtons[buttonIndex] == 0 && mouseButtons[buttonIndex] == 1);
+	return (prevMouseButtons[buttonIndex] == 1 && mouseButtons[buttonIndex] == 0);
 }
 
 SFMLInputService::~SFMLInputService()

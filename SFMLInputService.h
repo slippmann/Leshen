@@ -23,6 +23,8 @@ private:
 	std::bitset<2> mouseButtons;
 	std::bitset<2> prevMouseButtons;
 
+	Point2D mousePosition;
+
 	////////////////////
 	/// \brief Convert Key object to sf::Keyboard::Key.
 	///
@@ -50,14 +52,14 @@ public:
 
 	virtual std::bitset<10> GetKeys() override;
 	virtual std::bitset<2> GetMouseButtons() override;
-	virtual Point2D GetMousePosition(Window* window) override;
+	virtual Point2D GetMousePosition() override;
 
 	virtual void UpdateKeys() override;
 	virtual bool IsDown(Key key) override;
 	virtual bool IsPressed(Key key) override;
 	virtual bool IsReleased(Key key) override;
 
-	virtual void UpdateMouseButtons() override;
+	virtual void UpdateMouse(Window& window) override;
 	virtual bool IsDown(MouseButton button) override;
 	virtual bool IsPressed(MouseButton button) override;
 	virtual bool IsReleased(MouseButton button) override;

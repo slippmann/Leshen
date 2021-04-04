@@ -11,7 +11,7 @@
 ////////////////////
 class SFMLGameObject : public GameObject
 {
-private:
+protected:
 	sf::Texture texture;
 	sf::Sprite sprite;
 
@@ -28,4 +28,13 @@ public:
 	///
 	////////////////////
 	const sf::Sprite& GetSprite() const;
+
+	////////////////////
+	/// \brief Set a new texture for the sprite.
+	///
+	/// \param newtexture	A reference to the SFML texture.
+	/// \param resize		Resize the sprite to the size of the new texture?
+	///
+	////////////////////
+	void SetTexture(sf::Texture& newTexture, bool resize = true);
 };

@@ -153,6 +153,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="SFMLButtonGameObject.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Leshen.cpp" />
@@ -166,6 +167,7 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="SFMLButtonGameObject.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="ILogService.h" />
     <ClInclude Include="IInputService.h" />
@@ -183,6 +185,9 @@
     <ClInclude Include="Game.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="resources\textures\button.png" />
+    <Image Include="resources\textures\button_click.png" />
+    <Image Include="resources\textures\button_hover.png" />
     <Image Include="resources\textures\player.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
