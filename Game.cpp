@@ -2,14 +2,14 @@
 
 #include "Game.h"
 // TODO: temporary test code. Remove asap
-#include "SFMLGameObject.h"
+#include "SFMLButtonGameObject.h"
 
 #include "ServiceManager.h"
 #include "ILogService.h"
 #include "IInputService.h"
 
 // TODO: temporary test code. Remove asap
-static SFMLGameObject player;
+static SFMLButtonGameObject button;
 
 Game::Game()
 {
@@ -28,7 +28,10 @@ void Game::Start()
 	ILogService* logger = dynamic_cast<ILogService*>(ServiceManager::GetService("Logger"));
 
 	// TODO: temporary test code. Remove asap
-	player.Load("resources/textures/player.png");
+	button.Load("resources/textures/button.png");
+	button.LoadHoverTexture("resources/textures/button_hover.png");
+	button.LoadClickTexture("resources/textures/button_click.png");
+	button.SetPosition(Point2D(500, 250));
 
 	logger->Info("Starting Game");
 
@@ -59,45 +62,20 @@ void Game::loop()
 
 	mainWindow->Clear();
 	input->UpdateKeys();
-	input->UpdateMouseButtons();
+	input->UpdateMouse(*mainWindow.get());
 
 	switch (currentState)
 	{
 		case GameState::Playing:
 		{
-			Point2D mousePos = input->GetMousePosition(mainWindow.get());
-			// TODO: temporary test code. Remove asap
-			Point2D newPosition = player.GetPosition();
+			Point2D mousePos = input->GetMousePosition();
 
-			if (input->IsPressed(IInputService::MouseButton::Left))
-			{
-				if (mainWindow->GetRectangle().Contains(mousePos))
-				{
-					logger->Debug(fmt::format("User clicked ({}, {})...", mousePos.X, mousePos.Y));
-				}
-			}
+			button.Update(0);
 
 			// TODO: temporary test code. Remove asap
-			if (input->IsDown(IInputService::Key::W))
+			if (button.IsClicked())
 			{
-				newPosition.Y -= 2;
-			}
-			if (input->IsDown(IInputService::Key::S))
-			{
-				newPosition.Y += 2;
-			}
-			if (input->IsDown(IInputService::Key::D))
-			{
-				newPosition.X += 2;
-			}
-			if (input->IsDown(IInputService::Key::A))
-			{
-				newPosition.X -= 2;
-			}
-
-			if (mainWindow->GetRectangle().Contains(newPosition))
-			{
-				player.SetPosition(newPosition);
+				logger->Debug(fmt::format("User clicked the button!"));
 			}
 
 			if (input->IsPressed(IInputService::Key::Escape))
@@ -106,7 +84,7 @@ void Game::loop()
 			}
 
 			// Draw
-			mainWindow->Draw(player);
+			mainWindow->Draw(button);
 			mainWindow->Display();
 
 			break;
