@@ -63,6 +63,9 @@
     <ClCompile Include="SFMLGameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SFMLButtonGameObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -107,12 +110,24 @@
     <ClInclude Include="SFMLGameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SFMLButtonGameObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\textures\player.png">
+      <Filter>Resource Files\textures</Filter>
+    </Image>
+    <Image Include="resources\textures\button.png">
+      <Filter>Resource Files\textures</Filter>
+    </Image>
+    <Image Include="resources\textures\button_click.png">
+      <Filter>Resource Files\textures</Filter>
+    </Image>
+    <Image Include="resources\textures\button_hover.png">
       <Filter>Resource Files\textures</Filter>
     </Image>
   </ItemGroup>
