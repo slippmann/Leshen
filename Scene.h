@@ -1,5 +1,9 @@
 #pragma once
 
+#include <memory>
+#include <string>
+#include <map>
+
 #include "Window.h"
 
 ////////////////////
@@ -11,6 +15,7 @@ class Scene
 {
 protected:
 	unsigned int id;
+	std::map<std::string, std::shared_ptr<GameObject>> objects;
 
 public:
 	////////////////////
@@ -48,9 +53,11 @@ public:
 
 	////////////////////
 	/// \brief Process user input.
+	/// 
+	/// \param window	Reference to the game window. Needed to get relative position of the mouse.
 	///
 	////////////////////
-	virtual void ProcessInput() = 0;
+	virtual void ProcessInput(Window& window);
 
 	////////////////////
 	/// \brief Update scene and the objects within.
@@ -58,7 +65,7 @@ public:
 	/// \param deltaTime	Time that has passed since last update.
 	/// 
 	////////////////////
-	virtual void Update(double deltaTime) = 0;
+	virtual void Update(double deltaTime);
 
 	////////////////////
 	/// \brief Update performed after the Update method.
@@ -67,7 +74,7 @@ public:
 	/// \param deltaTime	Time that has passed since last update.
 	/// 
 	////////////////////
-	virtual void LateUpdate(double deltaTime) = 0;
+	virtual void LateUpdate(double deltaTime);
 
 	////////////////////
 	/// \brief Draw the scene in the given window.
@@ -75,5 +82,5 @@ public:
 	/// \param window	Reference to the window on which to draw.
 	///
 	////////////////////
-	virtual void Draw(Window& window) = 0;
+	virtual void Draw(Window& window);
 };
