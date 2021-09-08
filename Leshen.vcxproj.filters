@@ -28,6 +28,18 @@
     <Filter Include="Resource Files\textures">
       <UniqueIdentifier>{6ac40727-e536-44a9-9377-51cd32c37810}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Scenes">
+      <UniqueIdentifier>{58c134e8-7b5f-48eb-bc96-a9a3fec7b011}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Scenes">
+      <UniqueIdentifier>{ba779b4f-0056-4a16-a08a-c62800a9452b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Objects">
+      <UniqueIdentifier>{cbb71ee3-6556-40eb-b00a-a0bcef209007}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects">
+      <UniqueIdentifier>{c8bd4859-9bd6-4796-a8d2-230722236def}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Leshen.cpp">
@@ -57,17 +69,20 @@
     <ClCompile Include="Rectangle2D.cpp">
       <Filter>Source Files\Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Source Files\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="SFMLGameObject.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files\Objects</Filter>
     </ClCompile>
     <ClCompile Include="SFMLButtonGameObject.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="SFMLGameObject.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenuScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -104,17 +119,20 @@
     <ClInclude Include="Rectangle2D.h">
       <Filter>Header Files\Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Scene.h">
+      <Filter>Header Files\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="SFMLGameObject.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files\Objects</Filter>
     </ClInclude>
     <ClInclude Include="SFMLButtonGameObject.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="SFMLGameObject.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenuScene.h">
+      <Filter>Header Files\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

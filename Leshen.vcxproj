@@ -153,6 +153,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="MainMenuScene.cpp" />
     <ClCompile Include="SFMLButtonGameObject.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -168,6 +169,7 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MainMenuScene.h" />
     <ClInclude Include="SFMLButtonGameObject.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="ILogService.h" />
