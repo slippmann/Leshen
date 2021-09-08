@@ -153,12 +153,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="MainMenuScene.cpp" />
     <ClCompile Include="SFMLButtonGameObject.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Leshen.cpp" />
     <ClCompile Include="Point2D.cpp" />
     <ClCompile Include="Rectangle2D.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="ServiceManager.cpp" />
     <ClCompile Include="SFMLGameObject.cpp" />
     <ClCompile Include="SFMLInputService.cpp" />
@@ -167,6 +169,7 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MainMenuScene.h" />
     <ClInclude Include="SFMLButtonGameObject.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="ILogService.h" />
@@ -174,6 +177,7 @@
     <ClInclude Include="IService.h" />
     <ClInclude Include="Point2D.h" />
     <ClInclude Include="Rectangle2D.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="ServiceManager.h" />
     <ClInclude Include="SFMLGameObject.h" />
     <ClInclude Include="SFMLInputService.h" />

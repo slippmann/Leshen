@@ -2,14 +2,14 @@
 
 #include "Game.h"
 // TODO: temporary test code. Remove asap
-#include "SFMLButtonGameObject.h"
+#include "MainMenuScene.h"
 
 #include "ServiceManager.h"
 #include "ILogService.h"
 #include "IInputService.h"
 
 // TODO: temporary test code. Remove asap
-static SFMLButtonGameObject button;
+static MainMenuScene menu;
 
 Game::Game()
 {
@@ -28,10 +28,7 @@ void Game::Start()
 	ILogService& logger = dynamic_cast<ILogService&>(ServiceManager::GetService("Logger"));
 
 	// TODO: temporary test code. Remove asap
-	button.Load("resources/textures/button.png");
-	button.LoadHoverTexture("resources/textures/button_hover.png");
-	button.LoadClickTexture("resources/textures/button_click.png");
-	button.SetPosition(Point2D(500, 250));
+	menu.OnCreate();
 
 	logger.Info("Starting Game");
 
@@ -61,30 +58,20 @@ void Game::loop()
 	}
 
 	mainWindow->Clear();
-	input.UpdateKeys();
-	input.UpdateMouse(*mainWindow.get());
 
 	switch (currentState)
 	{
 		case GameState::Playing:
 		{
-			Point2D mousePos = input.GetMousePosition();
-
-			button.Update(0);
-
-			// TODO: temporary test code. Remove asap
-			if (button.IsClicked())
-			{
-				logger.Debug(fmt::format("User clicked the button!"));
-			}
+			menu.ProcessInput(*mainWindow);
+			menu.Update(0);
 
 			if (input.IsPressed(IInputService::Key::Escape))
 			{
 				logger.Debug("User pressed escape...");
 			}
 
-			// Draw
-			mainWindow->Draw(button);
+			menu.Draw(*mainWindow);
 			mainWindow->Display();
 
 			break;
