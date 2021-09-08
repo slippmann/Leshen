@@ -4,7 +4,7 @@
 #include "SFMLInputService.h"
 #include "SFMLWindow.h"
 
-sf::Keyboard::Key SFMLInputService::keyToSfmlKey(Key keyCode)
+sf::Keyboard::Key SFMLInputService::keyToSfmlKey(Key keyCode) const
 {
 	switch (keyCode)
 	{
@@ -23,7 +23,7 @@ sf::Keyboard::Key SFMLInputService::keyToSfmlKey(Key keyCode)
 	}
 }
 
-sf::Mouse::Button SFMLInputService::buttonToSfmlButton(MouseButton buttonCode)
+sf::Mouse::Button SFMLInputService::buttonToSfmlButton(MouseButton buttonCode) const
 {
 	switch (buttonCode)
 	{
@@ -63,8 +63,8 @@ void SFMLInputService::UpdateMouse(Window& window)
 {
 	MouseButton currentButton;
 
-	sf::RenderWindow* relativeWindow = dynamic_cast<SFMLWindow*>(&window)->GetRenderWindow();
-	sf::Vector2 position = sf::Mouse::getPosition(*relativeWindow);
+	sf::RenderWindow& renderWindow = dynamic_cast<SFMLWindow&>(window).GetRenderWindow();
+	auto position = sf::Mouse::getPosition(renderWindow);
 
 	mousePosition = Point2D(position.x, position.y);
 
@@ -80,50 +80,50 @@ void SFMLInputService::UpdateMouse(Window& window)
 	}
 }
 
-std::bitset<10> SFMLInputService::GetKeys()
+std::bitset<IInputService::UINT_NumKeys> SFMLInputService::GetKeys() const
 {
 	return keys;
 }
 
-std::bitset<2> SFMLInputService::GetMouseButtons()
+std::bitset<IInputService::UINT_NumMouseButtons> SFMLInputService::GetMouseButtons() const
 {
 	return mouseButtons;
 }
 
-Point2D SFMLInputService::GetMousePosition()
+Point2D SFMLInputService::GetMousePosition() const
 {
 	return mousePosition;
 }
 
-bool SFMLInputService::IsDown(Key key)
+bool SFMLInputService::IsDown(Key key) const
 {
 	return keys[static_cast<size_t>(key)] == 1;
 }
 
-bool SFMLInputService::IsPressed(Key key)
+bool SFMLInputService::IsPressed(Key key) const
 {	
 	int keyIndex = static_cast<size_t>(key);
 	return (prevKeys[keyIndex] == 0 && keys[keyIndex] == 1);
 }
 
-bool SFMLInputService::IsReleased(Key key)
+bool SFMLInputService::IsReleased(Key key) const
 {
 	int keyIndex = static_cast<size_t>(key);
 	return (prevKeys[keyIndex] == 1 && keys[keyIndex] == 0);
 }
 
-bool SFMLInputService::IsDown(MouseButton button)
+bool SFMLInputService::IsDown(MouseButton button) const
 {
 	return mouseButtons[static_cast<size_t>(button)] == 1;
 }
 
-bool SFMLInputService::IsPressed(MouseButton button)
+bool SFMLInputService::IsPressed(MouseButton button) const
 {
 	int buttonIndex = static_cast<size_t>(button);
 	return (prevMouseButtons[buttonIndex] == 0 && mouseButtons[buttonIndex] == 1);
 }
 
-bool SFMLInputService::IsReleased(MouseButton button)
+bool SFMLInputService::IsReleased(MouseButton button) const
 {
 	int buttonIndex = static_cast<size_t>(button);
 	return (prevMouseButtons[buttonIndex] == 1 && mouseButtons[buttonIndex] == 0);

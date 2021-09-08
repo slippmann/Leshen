@@ -9,12 +9,12 @@ SFMLWindow::SFMLWindow(unsigned int pxWidth, unsigned int pxHeight, const char* 
 	window.setVerticalSyncEnabled(true);
 }
 
-sf::RenderWindow* SFMLWindow::GetRenderWindow()
+sf::RenderWindow& SFMLWindow::GetRenderWindow()
 {
-	return &window;
+	return window;
 }
 
-Rectangle2D SFMLWindow::GetRectangle()
+Rectangle2D SFMLWindow::GetRectangle() const
 {
 	sf::Vector2 size = window.getSize();
 	return Rectangle2D(Point2D(0.0, 0.0), Point2D(size.x, size.y));

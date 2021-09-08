@@ -12,9 +12,9 @@
 class Game
 {
 private:
-	static inline const char* STR_MainWindowName = "Leshen";
-	static const int INT_MainWindowWidth = 1280;
-	static const int INT_MainWindowHeight = 720;
+	static constexpr const char* const STR_MainWindowName = "Leshen";
+	static constexpr int INT_MainWindowWidth = 1280;
+	static constexpr int INT_MainWindowHeight = 720;
 
 	enum class GameState
 	{

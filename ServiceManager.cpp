@@ -7,7 +7,7 @@ void ServiceManager::RegisterService(std::string serviceName, std::unique_ptr<IS
     services.insert(std::make_pair(serviceName, std::move(service)));
 }
 
-IService* ServiceManager::GetService(std::string serviceName)
+IService& ServiceManager::GetService(std::string serviceName)
 {
 	auto itr = services.find(serviceName);
 
@@ -16,7 +16,7 @@ IService* ServiceManager::GetService(std::string serviceName)
 		throw std::runtime_error("Service " + serviceName + " not found.");
 	}
 
-	return itr->second.get();
+	return *itr->second;
 }
 
 std::map<std::string, std::unique_ptr<IService>> ServiceManager::services;

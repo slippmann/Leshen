@@ -25,7 +25,7 @@ Game& Game::GetInstance()
 
 void Game::Start()
 {
-	ILogService* logger = dynamic_cast<ILogService*>(ServiceManager::GetService("Logger"));
+	ILogService& logger = dynamic_cast<ILogService&>(ServiceManager::GetService("Logger"));
 
 	// TODO: temporary test code. Remove asap
 	button.Load("resources/textures/button.png");
@@ -33,7 +33,7 @@ void Game::Start()
 	button.LoadClickTexture("resources/textures/button_click.png");
 	button.SetPosition(Point2D(500, 250));
 
-	logger->Info("Starting Game");
+	logger.Info("Starting Game");
 
 	currentState = GameState::Playing;
 
@@ -42,15 +42,15 @@ void Game::Start()
 		loop();
 	}
 
-	logger->Info("Exiting game");
+	logger.Info("Exiting game");
 
 	mainWindow->Close();
 }
 
 void Game::loop()
 {
-	ILogService* logger = dynamic_cast<ILogService*>(ServiceManager::GetService("Logger"));
-	IInputService* input = dynamic_cast<IInputService*>(ServiceManager::GetService("Input"));
+	ILogService& logger = dynamic_cast<ILogService&>(ServiceManager::GetService("Logger"));
+	IInputService& input = dynamic_cast<IInputService&>(ServiceManager::GetService("Input"));
 
 	Point2D mousePos;
 
@@ -61,26 +61,26 @@ void Game::loop()
 	}
 
 	mainWindow->Clear();
-	input->UpdateKeys();
-	input->UpdateMouse(*mainWindow.get());
+	input.UpdateKeys();
+	input.UpdateMouse(*mainWindow.get());
 
 	switch (currentState)
 	{
 		case GameState::Playing:
 		{
-			Point2D mousePos = input->GetMousePosition();
+			Point2D mousePos = input.GetMousePosition();
 
 			button.Update(0);
 
 			// TODO: temporary test code. Remove asap
 			if (button.IsClicked())
 			{
-				logger->Debug(fmt::format("User clicked the button!"));
+				logger.Debug(fmt::format("User clicked the button!"));
 			}
 
-			if (input->IsPressed(IInputService::Key::Escape))
+			if (input.IsPressed(IInputService::Key::Escape))
 			{
-				logger->Debug("User pressed escape...");
+				logger.Debug("User pressed escape...");
 			}
 
 			// Draw
