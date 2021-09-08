@@ -21,7 +21,7 @@ Rectangle2D::Rectangle2D(Point2D corner1, Point2D corner2)
     Width = fabs(corner1.X - corner2.X);
 }
 
-bool Rectangle2D::Contains(Point2D point)
+bool Rectangle2D::Contains(Point2D point) const
 {
     return (point.X <= Origin.X + Width  &&
             point.X >= Origin.X          &&
@@ -29,7 +29,7 @@ bool Rectangle2D::Contains(Point2D point)
             point.Y >= Origin.Y);
 }
 
-Point2D Rectangle2D::GetCenter()
+Point2D Rectangle2D::GetCenter() const
 {
     return Point2D(
         Origin.X + (Width / 2.0),

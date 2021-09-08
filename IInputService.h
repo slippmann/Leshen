@@ -28,6 +28,7 @@ public:
 		Escape,
 		Unknown
 	};
+	static constexpr int UINT_NumKeys = static_cast<int>(Key::Unknown);
 
 	enum class MouseButton
 	{
@@ -35,6 +36,7 @@ public:
 		Right,
 		Unknown
 	};
+	static constexpr int UINT_NumMouseButtons = static_cast<int>(MouseButton::Unknown);
 
 	////////////////////
 	/// \brief Get the current set of pressed keys.
@@ -43,7 +45,7 @@ public:
 	/// Index the bitset using the Key enum.
 	/// 
 	////////////////////
-	virtual std::bitset<10> GetKeys() = 0;
+	virtual std::bitset<10> GetKeys() const = 0;
 
 	////////////////////
 	/// \brief Get the current set of pressed keys.
@@ -52,7 +54,7 @@ public:
 	/// Index the bitset using the MouseButton enum.
 	/// 
 	////////////////////
-	virtual std::bitset<2> GetMouseButtons() = 0;
+	virtual std::bitset<2> GetMouseButtons() const = 0;
 
 	////////////////////
 	/// \brief Get the current position of the mouse in a window.
@@ -61,7 +63,7 @@ public:
 	/// \returns Point2D with the x and y position of the cursor.
 	/// 
 	////////////////////
-	virtual Point2D GetMousePosition() = 0;
+	virtual Point2D GetMousePosition() const = 0;
 
 	////////////////////
 	/// \brief Update the current set of pressed keys.
@@ -79,7 +81,7 @@ public:
 	/// \return true if the button is down.
 	/// 
 	////////////////////
-	virtual bool IsDown(Key key) = 0;
+	virtual bool IsDown(Key key) const = 0;
 
 	////////////////////
 	/// \brief Check if a given key has been pressed since the last update.
@@ -90,7 +92,7 @@ public:
 	/// \return true if the key was pressed.
 	/// 
 	////////////////////
-	virtual bool IsPressed(Key key) = 0;
+	virtual bool IsPressed(Key key) const = 0;
 
 	////////////////////
 	/// \brief Check if a given key has been released since the last update.
@@ -101,7 +103,7 @@ public:
 	/// \return true if the key was released.
 	/// 
 	////////////////////
-	virtual bool IsReleased(Key key) = 0;
+	virtual bool IsReleased(Key key) const = 0;
 
 
 	////////////////////
@@ -122,7 +124,7 @@ public:
 	/// \return true if the button is down.
 	/// 
 	////////////////////
-	virtual bool IsDown(MouseButton button) = 0;
+	virtual bool IsDown(MouseButton button) const = 0;
 
 	////////////////////
 	/// \brief Check if a given mouse button has been pressed since the last update.
@@ -133,7 +135,7 @@ public:
 	/// \return true if the key was pressed.
 	/// 
 	////////////////////
-	virtual bool IsPressed(MouseButton button) = 0;
+	virtual bool IsPressed(MouseButton button) const = 0;
 
 	////////////////////
 	/// \brief Check if a given mouse button has been released since the last update.
@@ -144,7 +146,7 @@ public:
 	/// \return true if the key was released.
 	/// 
 	////////////////////
-	virtual bool IsReleased(MouseButton button) = 0;
+	virtual bool IsReleased(MouseButton button) const = 0;
 
 	virtual ~IInputService() = 0 {}
 };

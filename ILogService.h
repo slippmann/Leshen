@@ -33,8 +33,8 @@ public:
 	/// 
 	////////////////////
 	virtual void Info(const char * message) = 0;
-	virtual void Info(std::string& message)  { Info(message.c_str()); };
-	virtual void Info(std::string&& message) { Info(message.c_str()); };
+	virtual void Info(const std::string& message)  { Info(message.c_str()); };
+	virtual void Info(const std::string&& message) { Info(message.c_str()); };
 
 	////////////////////
 	/// \brief Log a message at debug level.
@@ -44,8 +44,8 @@ public:
 	/// 
 	////////////////////
 	virtual void Debug(const char* message) = 0;
-	virtual void Debug(std::string& message)  { Debug(message.c_str()); };
-	virtual void Debug(std::string&& message) { Debug(message.c_str()); };
+	virtual void Debug(const std::string& message)  { Debug(message.c_str()); };
+	virtual void Debug(const std::string&& message) { Debug(message.c_str()); };
 
 	////////////////////
 	/// \brief Log a message at warning level.
@@ -55,8 +55,8 @@ public:
 	/// 
 	////////////////////
 	virtual void Warn(const char* message) = 0;
-	virtual void Warn(std::string& message)  { Warn(message.c_str()); };
-	virtual void Warn(std::string&& message) { Warn(message.c_str()); };
+	virtual void Warn(const std::string& message)  { Warn(message.c_str()); };
+	virtual void Warn(const std::string&& message) { Warn(message.c_str()); };
 	
 	////////////////////
 	/// \brief Log a message at error level.
@@ -66,8 +66,8 @@ public:
 	/// 
 	////////////////////
 	virtual void Error(const char* message) = 0;
-	virtual void Error(std::string& message)  { Error(message.c_str()); };
-	virtual void Error(std::string&& message) { Error(message.c_str()); };
+	virtual void Error(const std::string& message)  { Error(message.c_str()); };
+	virtual void Error(const std::string&& message) { Error(message.c_str()); };
 
 	virtual ~ILogService() = 0 {}
 };

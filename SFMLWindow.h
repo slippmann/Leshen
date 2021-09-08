@@ -24,9 +24,9 @@ public:
 	////////////////////
 	SFMLWindow(unsigned int pxWidth, unsigned int pxHeight, const char* name);
 
-	sf::RenderWindow* GetRenderWindow();
+	sf::RenderWindow& GetRenderWindow();
 
-	virtual Rectangle2D GetRectangle() override;
+	virtual Rectangle2D GetRectangle() const override;
 
 	virtual void Close() override;
 	virtual void Clear() override;

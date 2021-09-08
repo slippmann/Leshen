@@ -20,5 +20,5 @@ public:
 
 	void LoadHoverTexture(const char* texturePath);
 	void LoadClickTexture(const char* texturePath);
-	bool IsClicked();
+	bool IsClicked() const;
 };

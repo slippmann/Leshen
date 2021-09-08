@@ -31,7 +31,7 @@ public:
 	/// \return The window rectangle.
 	/// 
 	////////////////////
-	virtual Rectangle2D GetRectangle() = 0;
+	virtual Rectangle2D GetRectangle() const = 0;
 
 
 	////////////////////

@@ -38,5 +38,5 @@ public:
 	/// service exists, throws exception.
 	/// 
 	////////////////////
-	static IService* GetService(std::string serviceName);
+	static IService& GetService(std::string serviceName);
 };

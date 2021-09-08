@@ -20,14 +20,14 @@ SFMLButtonGameObject::SFMLButtonGameObject()
 
 void SFMLButtonGameObject::Update(double deltaTime)
 {
-	IInputService* input = dynamic_cast<IInputService*>(ServiceManager::GetService("Input"));
+	IInputService& input = dynamic_cast<IInputService&>(ServiceManager::GetService("Input"));
 	(void)deltaTime;
 
 	isClicked = false;
 
-	if (rect.Contains(input->GetMousePosition()))
+	if (rect.Contains(input.GetMousePosition()))
 	{
-		if (input->IsDown(IInputService::MouseButton::Left))
+		if (input.IsDown(IInputService::MouseButton::Left))
 		{
 			onClick();
 		}
@@ -58,12 +58,14 @@ void SFMLButtonGameObject::LoadClickTexture(const char* texturePath)
 	}
 }
 
-bool SFMLButtonGameObject::IsClicked()
+bool SFMLButtonGameObject::IsClicked() const
 {
-	IInputService* input = dynamic_cast<IInputService*>(ServiceManager::GetService("Input"));
+	IInputService& input = dynamic_cast<IInputService&>(ServiceManager::GetService("Input"));
 	
-	if (rect.Contains(input->GetMousePosition()))
+	if (rect.Contains(input.GetMousePosition()))
 	{
-		return input->IsReleased(IInputService::MouseButton::Left);
+		return input.IsReleased(IInputService::MouseButton::Left);
 	}
+
+	return false;
 }

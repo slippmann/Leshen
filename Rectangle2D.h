@@ -47,7 +47,7 @@ public:
 	/// \param point	Point to check.
 	///
 	////////////////////
-	bool Contains(Point2D point);
+	bool Contains(Point2D point) const;
 
 	////////////////////
 	/// \brief Get the center point of the rectangle.
@@ -55,7 +55,7 @@ public:
 	/// \return The center point of the rectangle.
 	///
 	////////////////////
-	Point2D GetCenter();
+	Point2D GetCenter() const;
 
 	////////////////////
 	/// \brief Set the center point of the rectangle.
